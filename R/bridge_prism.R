@@ -10,7 +10,7 @@ model_run <- function() {
   #   patient$smoker <- "Former Smoker"
   # } else {patient$smoker <- "Smoker"}
 
-  patient$smoker <- NULL
+  patient$smoker <- "NULL"
 
   if (runif(1, min = 0, max = 1) >= 0.4685) {
     patient$oxygen <- "No"
@@ -20,7 +20,7 @@ model_run <- function() {
   #   patient$statin <- "No"
   # } else {patient$statin <- "Yes"}
 
-  patient$statin <- NULL
+  patient$statin <- "NULL"
 
   if (runif(1, min = 0, max = 1) >= 0.6504) {
     patient$LAMA <- "No"
@@ -38,7 +38,7 @@ model_run <- function() {
   patient$FEV1 <- round(rnorm(1, mean = 40.60, sd = 15.93))
   patient$BMI  <- round(rnorm(1, mean = 27.53, sd = 6.43))
  #patient$SGRQ <- round(rnorm(1, mean = 49.95, sd = 16.72))
-  patient$SGRQ <- NULL
+  patient$SGRQ <- "NULL"
 
   #patient$LastYrExacCount <- rpois (n = 1, lambda = 1.42)
   #patient$LastYrSevExacCount <- rpois (n = 1, lambda = 0.29)
@@ -48,8 +48,8 @@ model_run <- function() {
   # patient$LastYrExacCount <- exacSample[1]
   # patient$LastYrSevExacCount <- exacSample[2]
 
-  patient$LastYrExacCount <- NULL
-  patient$LastYrSevExacCount <- NULL
+  patient$LastYrExacCount <- "NULL"
+  patient$LastYrSevExacCount <- "NULL"
 
   return((flatten_list(patient)))
 }

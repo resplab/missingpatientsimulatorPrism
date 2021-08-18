@@ -45,5 +45,5 @@ jobs:
         with:
           host: 'https://captain.cp.prism-ubc.linaralabs.com'
           password: '${{ secrets.CAPROVER_PASSWORD }}'
-          app: 'model-patientsimulator'
-          image: 'ghcr.io/resplab/patientsimulatorprism:latest'
+          app: 'model-missingpatientsimulator'
+          image: 'ghcr.io/resplab/missingpatientsimulatorprism:latest'

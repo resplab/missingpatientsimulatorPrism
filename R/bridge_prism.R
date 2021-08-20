@@ -6,21 +6,18 @@ model_run <- function() {
     patient$male <- "Female"
   } else {patient$male <- "Male"}
 
-  # if (runif(1, min = 0, max = 1) >= 0.258) {
-  #   patient$smoker <- "Former Smoker"
-  # } else {patient$smoker <- "Smoker"}
-
-  patient$smoker <- "NULL"
+   if (runif(1, min = 0, max = 1) >= 0.258) {
+     patient$smoker <- "Former Smoker"
+   } else {patient$smoker <- "Smoker"}
 
   if (runif(1, min = 0, max = 1) >= 0.4685) {
     patient$oxygen <- "No"
   } else {patient$oxygen <- "Yes"}
 
-  # if (runif(1, min = 0, max = 1) >= 0.2265) {
-  #   patient$statin <- "No"
-  # } else {patient$statin <- "Yes"}
+   if (runif(1, min = 0, max = 1) >= 0.2265) {
+     patient$statin <- "No"
+   } else {patient$statin <- "Yes"}
 
-  patient$statin <- "NULL"
 
   if (runif(1, min = 0, max = 1) >= 0.6504) {
     patient$LAMA <- "No"
@@ -37,19 +34,21 @@ model_run <- function() {
   patient$age  <- round(rnorm(1, mean = 64.68, sd = 8.75))
   patient$FEV1 <- round(rnorm(1, mean = 40.60, sd = 15.93))
   patient$BMI  <- round(rnorm(1, mean = 27.53, sd = 6.43))
- #patient$SGRQ <- round(rnorm(1, mean = 49.95, sd = 16.72))
-  patient$SGRQ <- "NULL"
+  patient$SGRQ <- round(rnorm(1, mean = 49.95, sd = 16.72))
 
-  #patient$LastYrExacCount <- rpois (n = 1, lambda = 1.42)
-  #patient$LastYrSevExacCount <- rpois (n = 1, lambda = 0.29)
+  # patient$LastYrExacCount <- rpois (n = 1, lambda = 1.42)
+  # patient$LastYrSevExacCount <- rpois (n = 1, lambda = 0.29)
 
-  # covar <- cbind(c(2.55, 0.87), c(0.57, 0.44))
-  # exacSample <- rmvpois(10, c(1.42, 0.29), covar)[1,]
-  # patient$LastYrExacCount <- exacSample[1]
-  # patient$LastYrSevExacCount <- exacSample[2]
+  covar <- cbind(c(2.55, 0.87), c(0.57, 0.44))
+  exacSample <- rmvpois(10, c(1.42, 0.29), covar)[1,]
+  patient$LastYrExacCount <- exacSample[1]
+  patient$LastYrSevExacCount <- exacSample[2]
 
-  patient$LastYrExacCount <- "NULL"
-  patient$LastYrSevExacCount <- "NULL"
+  nullifier <- (runif(length(patient))>0.7) #each value has a 30% probability of being missing
+  for (i in 1:length(patient)) {
+    if (nullifier[i]) patient[i] <- "NULL"
+  }
+
 
   return((flatten_list(patient)))
 }

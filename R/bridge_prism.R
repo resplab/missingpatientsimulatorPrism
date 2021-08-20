@@ -44,7 +44,8 @@ model_run <- function() {
   patient$LastYrExacCount <- exacSample[1]
   patient$LastYrSevExacCount <- exacSample[2]
 
-  nullifier <- (runif(length(patient))>0.7) #each value has a 30% probability of being missing
+  threshold <- runif(1, min=0.5, max=0.7)
+  nullifier <- (runif(length(patient))>threshold) #each value has a 30%-50% probability of being missing
   for (i in 1:length(patient)) {
     if (nullifier[i]) patient[i] <- "NULL"
   }

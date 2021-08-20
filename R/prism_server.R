@@ -52,9 +52,9 @@ gateway<-function(...)
 
 
 #' @export
-prism_model_run<-function(model_input=NULL)
+prism_model_run<-function()
 {
-  return(model_run(model_input))
+  return(model_run())
 }
 
 
